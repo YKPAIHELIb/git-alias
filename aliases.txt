@@ -6,6 +6,7 @@
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
 	lga2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	sstash = !git commit --message "WIP" && git stash -u && git reset --soft HEAD^ && :
+    sstash2 = "!f() { git commit -m \"WIP: ${*:-unnamed}\" && git stash push -u -m \"${*:-unnamed}\" && git reset --soft HEAD^; }; f"
     branch-prune = "!git fetch -p && for b in $(git for-each-ref --format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads); do git branch -d $b; done"
     wl = worktree list
     wa = worktree add
@@ -13,3 +14,4 @@
     c = checkout
     cb = checkout -b
     fa = fetch --all --prune
+    diff-files-ignore-whitespace = diff --stat --ignore-all-space --ignore-blank-lines --diff-filter=M
